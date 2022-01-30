@@ -1,6 +1,5 @@
 package cn.com.basic;
 
-import java.awt.image.ImagingOpException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 

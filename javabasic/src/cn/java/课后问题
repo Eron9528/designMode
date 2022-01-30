@@ -1,0 +1,31 @@
+
+
+一 java 面向对象设计
+
+1. 泛型设计啥时候用 T ,啥时候用 ？
+    T 有一种类型概念，通常 T 可以用在类型和方法， ？ 仅用于方法
+    T 存在类型继承性， ？ 不存在
+
+2. Throwable 有一个带 boolean writableStackTrace 的构造，用这个来控制方法的开销好不好？
+    这是一个不错的选择，不过这个方式需要继承，并且要考虑一致性，必须依赖 Java 7 +
+
+3. 泛型设计 尖括号里都有哪些常用的，他们的区别和应用场景是什么？
+    常规类型，通用T, 相当于 Object , 适用于任何类型
+    <T extents Serializable> , T 必须是 Serializable 或子类（接口）
+    <T super Serializable>
+
+二 接口设计
+
+1. Cloneable 接口的应用场景是什么？
+    Cloneable 接口是一个标记接口，用于表示该类可以克隆，否则会抛出 CloneNotSupportedException
+
+2. 内部类什么时候用public 什么时候用private, 什么时候加 static
+    如果需要公开的时候，public 和 static 并用修饰某个类/接口，在 Java 8 之后，接口不需要再显示的声明 static
+
+3. unmodify 这个特殊类的用途
+    通常用于方法的返回值，通知使用者该方法是只读的，并且不期望对方修改状态
+
+4. java 8 之后，抽象类还有哪些地方是接口不能替代的，或者说抽象类还存在哪些优势
+    静态方法没有办法被 interface 替换，以为interface 不允许出现static 修饰方法
+
+5.
