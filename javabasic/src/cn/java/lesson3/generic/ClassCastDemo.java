@@ -1,4 +1,4 @@
-package cn.java.lesson3;
+package cn.java.lesson3.generic;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
