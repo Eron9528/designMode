@@ -11,6 +11,7 @@ public class ListAndSetDemo {
         values.add("a");
         values.add("b");
         values.add("c");
+
         values.forEach(System.out::println);
 
         // 以上例子是 ASCII 码
