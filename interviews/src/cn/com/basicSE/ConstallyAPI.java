@@ -1,5 +1,10 @@
 package cn.com.basicSE;
 
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Calendar;
 import java.util.List;
 
 public class ConstallyAPI {
@@ -52,24 +57,70 @@ public class ConstallyAPI {
 
 
         // 6. 请说出下面程序的输出
+        /**
+         *  String对象的intern（）方法会得到字符串对象在常量池中对应的版本的引用（如果常量池中有一个字符串与
+         *  String 对象的 equals结果是 true），如果常量池中没有对应的字符串，则该字符串将被添加到常量池中，
+         *  然后返回常量池中字符串的引用；
+         *
+         *  字符串的+操作其本质是创建了StringBuilder 对象进行 append 操作，然后将拼接后的 StringBuilder
+         *  对象用 toString 方法处理成 String 对象，这一点可以用 javap -c StringEqualTest.class 命令
+         *  获得 class 文件对应的 JVM 字节码指令就可以看出来。
+         *
+         */
         System.out.println("=============题目3===============");
 
-        String s = new StringBuilder("Programming").toString();
         String s1 = "Programming";
         String s2 = new String("Programming");
         String s3 = "Program";
         String s4 = "ming";
         String s5 = "Program" + "ming";
         String s6 = s3 + s4;
-        System.out.println(s1 == s2);
         System.out.println(s1 == s5);
-        System.out.println(s1 == s.intern());
         System.out.println(s1 == s6);
         System.out.println(s1 == s6.intern());
         System.out.println(s2 == s2.intern());
 
 
-        System.out.println("=============题目2===============");
+        // 7 \Java中的日期和时间
+
+        // 7.1. 如何取得年月日、小时分钟秒？
+        System.out.println("=============题目4===============");
+        Calendar cal = Calendar.getInstance();
+        System.out.println(cal.get(Calendar.YEAR));
+        System.out.println(cal.get(Calendar.MONTH));
+        System.out.println(cal.get(Calendar.DATE));
+        System.out.println(cal.get(Calendar.DAY_OF_MONTH));
+        System.out.println(cal.get(Calendar.MINUTE));
+        System.out.println(cal.get(Calendar.SECOND));
+
+
+        // 7.2. 如何取得从1970年1月1日0时0分0 秒到现在的毫秒数？
+        System.out.println("=============题目5===============");
+        System.out.println(Clock.systemDefaultZone().millis());
+        System.out.println(System.currentTimeMillis());
+
+
+        // 7.3. 如何取得某月的最后一天？
+        System.out.println("=============题目6===============");
+        LocalDate date = LocalDate.now();
+        // 本月的第一天
+        LocalDate firstday = LocalDate.of(date.getYear(),date.getMonth(),1);
+        System.out.println(firstday);
+        // 本月的最后一天
+        LocalDate lastday = date.with(TemporalAdjusters.lastDayOfMonth());
+        System.out.println(lastday);
+
+
+        // 7.4. 如何格式化日期？
+        /**
+         *  Java.text.DataFormat 的子类（如 SimpleDateFormat 类）中的 format(Date)方法可将日期格式化。
+         *  Java 8 中可以用 java.time.format.DateTimeFormatter来格式化时间日期，
+         */
+
+        // 7.5. 打印昨天的当前时刻？
+
+
+
 
 
 
