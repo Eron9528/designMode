@@ -5,7 +5,7 @@ import com.sun.security.jgss.GSSUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GrammarDemo {
+public class A_GrammarDemo {
 
     public static void main(String[] args) throws CloneNotSupportedException {
         Student s = new Student("angle",10);

@@ -1,6 +1,6 @@
 package cn.com.basicSE;
 
-public class duotai {
+public class B_duotai {
 
 
     //Java中实现多态的机制是什么？

@@ -1,6 +1,6 @@
 package cn.com.basicSE;
 
-public class Execption {
+public class C_Execption {
 
     public static void main(String[] args) {
 
