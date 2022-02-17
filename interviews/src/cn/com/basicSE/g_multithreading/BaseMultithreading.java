@@ -113,28 +113,28 @@ public class BaseMultithreading {
 
 
 
-        final Bussiness bussiness = new Bussiness();
-        // 子线程
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i<3;i++){
-                    try {
-                        bussiness.subMethod();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-        // 主线程
-        for (int i = 0; i<3;i++){
-            try {
-                bussiness.mainMethod();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+//        final Bussiness bussiness = new Bussiness();
+//        // 子线程
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                for (int i = 0; i<3;i++){
+//                    try {
+//                        bussiness.subMethod();
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }).start();
+//        // 主线程
+//        for (int i = 0; i<3;i++){
+//            try {
+//                bussiness.mainMethod();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
 
         // (4). 线程局部变量ThreadLocal
@@ -173,10 +173,71 @@ public class BaseMultithreading {
          *
          */
 
+        // ( 5 ) 多线程共享数据
+        /**
+         *      在Java传统线程机制中的共享数据方式，大致可以简单分两种情况：
+         *      ➢ 多个线程行为一致，共同操作一个数据源。也就是每个线程执行的代码相同，可以使用同一个Runnable对象，这个Runnable对象中
+         *          有那个共享数据，例如，卖票系统就可以这么做。
+         *      ➢ 多个线程行为不一致，共同操作一个数据源。也就是每个线程执行的代码不同，这时候需要用不同的Runnable对象。例如，银行存取款。
+         *      下面我们通过两个示例代码来分别说明这两种方式。
+         */
+
+        /**
+         *      1. 多个线程行为一致共同操作一个数据
+         *      如果每个线程执行的代码相同，可以使用同一个Runnable对象，这个Runnable对象中有那个共享数据，例如，买票系统就可以这么做。
+         */
+        System.out.println("=============题目4===============");
+
+        ShareData shareData = new ShareData();
+        for (int i = 0; i<4;i++){
+            new Thread(new RunnableCusToInc(shareData), "Thread" + i).start();
+        }
+
+        /**
+         *      2. 多个线程行为不一致共同操作一个数据
+         *      如果每个线程执行的代码不同，这时候需要用不同的Runnable对象，有如下两种方式来实现这些Runnable对象之间的数据共享：
+         *      例：TwoThreadShareOneDataTest.java
+         *
+         */
+
 
     }
 }
 
+
+/**
+ * 共享数据类
+ */
+class ShareData{
+    private int num = 0;
+    public synchronized void inc(){
+        num ++;
+        System.out.println(Thread.currentThread().getName() + ": invoke inc method num =" + num);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+/**
+ * 多线程类
+ */
+class RunnableCusToInc implements Runnable{
+
+    private ShareData shareData;
+    public RunnableCusToInc(ShareData shareData){
+        this.shareData = shareData;
+    }
+    @Override
+    public void run() {
+        for (int i = 0; i<5; i++){
+            shareData.inc();
+        }
+
+    }
+}
 
 class SerialNum {
     // The next serial number to be assigned
@@ -226,7 +287,7 @@ class ThreadContext{
 }
 
 
-
+//
 class TimerTastCus extends TimerTask {
     private static volatile int count = 0;
     @Override
