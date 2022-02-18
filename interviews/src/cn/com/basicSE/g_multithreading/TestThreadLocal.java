@@ -2,7 +2,7 @@ package cn.com.basicSE.g_multithreading;
 
 import java.util.Random;
 
-public class ThreadLocalTest implements Runnable{
+class ThreadLocalTest implements Runnable{
 
     ThreadLocal<Studen> studenThreadLocal = new ThreadLocal<Studen>();
 

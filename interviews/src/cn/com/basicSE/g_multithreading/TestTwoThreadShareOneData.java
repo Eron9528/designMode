@@ -1,6 +1,6 @@
 package cn.com.basicSE.g_multithreading;
 
-public class TwoThreadShareOneDataTest {
+public class TestTwoThreadShareOneData {
 
     /**
      *      2. 多个线程行为不一致共同操作一个数据

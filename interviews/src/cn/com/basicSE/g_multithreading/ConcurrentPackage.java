@@ -1,5 +1,9 @@
 package cn.com.basicSE.g_multithreading;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 public class ConcurrentPackage {
 
     /**
@@ -48,11 +52,72 @@ public class ConcurrentPackage {
      *                      果线程 池中有等待的工作线程，就可以开始运行了；否则进入等待队列。
      *                  为什么要用线程池:
      *                       减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务
-     *                       可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为因为消耗过多的内存，而把服务
+     *                       可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为消耗过多的内存，而把服务
      *                        器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机
+     *                  Executors详解:
+     *                          Java里面线程池的顶级接口是Executor，但是严格意义上讲Executor并不是一个线程池，而只是
+     *                      一个执行线程的工具。真正的线程池接口是ExecutorService。ThreadPoolExecutor是Executors类
+     *                      的底层实现。我们先介绍下Executors。
+     *                          线程池的基本思想还是一种对象池的思想，开辟一块内存空间，里面存放了众多(未死亡)的线程，池中线
+     *                      程执行调度由池管理器来处理。当有线程任务时，从池中取一个，执行完成后线程对象归池，这样可以避免反复
+     *                      创建线程对象所带来的性能开销，节省了系统的资源。
+     *                          Java5中并发库中，线程池创建线程大致可以分为下面三种：
+     *                          除了这三种还有定时执行的线程池
+     *              ➢ ExecutorService执行器服务
+     *                      java.util.concurrent.ExecutorService 接口表示一个异步执行机制，使我们能够在后台执行任务。因此一个
+     *                  ExecutorService 很类似于一个线程池。实际上，存在于 java.util.concurrent 包里的 ExecutorService
+     *                  实现就是一个线程池实现。
+     *                      一个线程将一个任务委派给一个 ExecutorService 去异步执行。
+     *                      一旦该线程将任务委派给 ExecutorService，该线程将继续它自己的执行，独立于该任务的执行。
+     *                  ExecutorService实现:
+     *                      既然 ExecutorService 是个接口，如果你想用它的话就得去使用它的实现类之一。
+     *                      java.util.concurrent 包提供了 ExecutorService 接口的以下实现类：
+     *                           ThreadPoolExecutor
+     *                           ScheduledThreadPoolExecutor
+     *                  ExecutorService创建:
+     *                      ExecutorService 的创建依赖于你使用的具体实现。但是你也可以使用 Executors 工厂类来创建 ExecutorService 实例。
+     *                      代码示例：
+     *                      ExecutorService executorService1 = Executors.newSingleThreadExecutor(); //之前Executors已介绍
+     *                      ExecutorService executorService2 = Executors.newFixedThreadPool(10);
+     *                      ExecutorService executorService3 = Executors.newScheduledThreadPool(10);
+     *                  ExecutorService使用:
+     *                      有几种不同的方式来将任务委托给 ExecutorService 去执行：
+     *                           execute(Runnable)
+     *                           submit(Runnable)
+     *                           submit(Callable)
+     *                           invokeAny(…)
+     *                           invokeAll(…)
+     *
+     *                      ✓ execute(Runnable)
+     *                          execute(Runnable) 方法要求一个 java.lang.Runnable 对象，然后对它进行异步执行。
+     *                          特点：没有办法得知被执行的 Runnable 的执行结果。如果有需要的话你得使用一个 Callable(以下将做介绍)。
+     *                      ✓ submit(Runnable)
+     *                          submit(Runnable) 方法也要求一个 Runnable 实现类，但它返回一个 Future 对象。这个 Future 对象
+     *                          可以用来检查 Runnable 是否已经执行完毕。
+     *                      ✓ submit(Callable)
+     *                          submit(Callable) 方法类似于 submit(Runnable) 方法，除了它所要求的参数类型之外。Callable 实例
+     *                          除了它的 call() 方法能够返回一个结果之外和一个 Runnable 很相像。Runnable.run() 不能够返回一个结果。
+     *                          Callable 的结果可以通过 submit(Callable) 方法返回的 Future 对象进行获取。
+     *                      ✓ invokeAny()
+     *                          invokeAny() 方法要求一系列的 Callable 或者其子接口的实例对象。调用这个方法并不会返回一个 Future，
+     *                          但它返回其中一个 Callable 对象的结果。无法保证返回的是哪个 Callable 的结果 – 只能表明其中一个已执行结束。
+     *                          如果其中一个任务执行结束(或者抛了一个异常)，其他 Callable 将被取消。
+     *
      *
      *
      *
      */
+
+    public static void main(String[] args) {
+        //创建固定大小的线程池
+        ExecutorService fPool = Executors.newFixedThreadPool(3);
+        //创建缓存大小的线程池
+        ExecutorService cPool = Executors.newCachedThreadPool();
+        //创建单一的线程池 //创建单一的线程池
+        ExecutorService sPool = Executors.newSingleThreadExecutor();
+        // 创建定时的线程池
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(2);
+    }
+
 
 }
