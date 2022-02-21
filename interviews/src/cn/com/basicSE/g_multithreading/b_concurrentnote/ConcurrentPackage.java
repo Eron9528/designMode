@@ -1,4 +1,4 @@
-package cn.com.basicSE.g_multithreading;
+package cn.com.basicSE.g_multithreading.b_concurrentnote;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -102,6 +102,17 @@ public class ConcurrentPackage {
      *                          invokeAny() 方法要求一系列的 Callable 或者其子接口的实例对象。调用这个方法并不会返回一个 Future，
      *                          但它返回其中一个 Callable 对象的结果。无法保证返回的是哪个 Callable 的结果 – 只能表明其中一个已执行结束。
      *                          如果其中一个任务执行结束(或者抛了一个异常)，其他 Callable 将被取消。
+     *                      ✓ invokeAll()
+     *                          invokeAll() 方法将调用你在集合中传给 ExecutorService 的所有 Callable 对象。invokeAll() 返回一系列
+     *                          的 Future 对象，通过它们你可以获取每个 Callable 的执行结果。
+     *                          记住，一个任务可能会由于一个异常而结束，因此它可能没有 "成功"。无法通过一个 Future 对象来告知我
+     *                          们是两种结束中的哪一种。
+     *                  Executors关闭:
+     *                      使用shutdown和shutdownNow可以关闭线程池
+     *                      两者的区别：
+     *                          shutdown只是将空闲的线程interrupt() 了，shutdown（）之前提交的任务可以继续执行直到结束。
+     *                          shutdownNow 是interrupt所有线程， 因此大部分线程将立刻被中断。之所以是大部分，而不是全部 ，
+     *                          是因为interrupt()方法能力有限。
      *
      *
      *

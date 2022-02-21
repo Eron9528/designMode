@@ -1,4 +1,4 @@
-package cn.com.basicSE.g_multithreading;
+package cn.com.basicSE.g_multithreading.a_threadnote;
 
 public class TestTwoThreadShareOneData {
 

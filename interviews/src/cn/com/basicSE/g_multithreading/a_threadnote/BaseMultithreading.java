@@ -1,10 +1,8 @@
-package cn.com.basicSE.g_multithreading;
+package cn.com.basicSE.g_multithreading.a_threadnote;
 
 
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class BaseMultithreading {
 
