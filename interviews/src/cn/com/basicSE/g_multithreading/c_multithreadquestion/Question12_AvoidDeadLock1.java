@@ -35,6 +35,10 @@ public class Question12_AvoidDeadLock1 {
     }
 
     public static void main(String[] args) {
+
+        //1）加锁顺序（线程按照一定的顺序加锁）
+
+
         final Question12_AvoidDeadLock1 td1 = new Question12_AvoidDeadLock1();
         final Question12_AvoidDeadLock1 td2 = new Question12_AvoidDeadLock1();
         td1.flag = 1;
