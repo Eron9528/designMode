@@ -1,9 +1,5 @@
 package cn.com.questionfrommashibing.javabasic;
 
-import cn.com.bate5.javasebasic.C_Execption;
-
-import java.util.Collections;
-
 public class QuestionMain {
 
     // 1.  java 对象有哪些特征
@@ -51,12 +47,17 @@ public class QuestionMain {
      *          底层大都采用Lock锁，（1.8的ConcurrentHashMap 不使用 Lock 锁），保证安全的同时，性能也很高。
      */
 
+    // JDK 1.8 中的新特性
+
+    /**
+     *      一、接口的默认方法
+     *          Java8 允许我们给接口添加一个非抽象方法实现，只需要使用default 关键字即可，这个特征又叫做扩展方法，
+     *      二、Lambda 表达式
+     *      三、函数式接口
+     *
+     */
 
 
-    public static void main(String[] args) {
-    }
-}
 
-class CcccExecption extends Exception {
 
 }
