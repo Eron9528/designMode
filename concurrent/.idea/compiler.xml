@@ -6,15 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="concurrent" />
-        <module name="performanceoptimizing" />
-        <module name="spring5" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="concurrent" target="11" />
-      <module name="performanceoptimizing" target="8" />
-      <module name="spring5" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

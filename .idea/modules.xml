@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/artofconcurrency/artofconcurrency.iml" filepath="$PROJECT_DIR$/artofconcurrency/artofconcurrency.iml" />
       <module fileurl="file://$PROJECT_DIR$/beautyofprogram/beautyofprogram.iml" filepath="$PROJECT_DIR$/beautyofprogram/beautyofprogram.iml" />
       <module fileurl="file://$PROJECT_DIR$/bingfa/bingfa.iml" filepath="$PROJECT_DIR$/bingfa/bingfa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/concurrent/concurrent.iml" filepath="$PROJECT_DIR$/concurrent/concurrent.iml" />
       <module fileurl="file://$PROJECT_DIR$/corejava/corejava.iml" filepath="$PROJECT_DIR$/corejava/corejava.iml" />
       <module fileurl="file://$PROJECT_DIR$/designMode.iml" filepath="$PROJECT_DIR$/designMode.iml" />
       <module fileurl="file://$PROJECT_DIR$/interviews/interviews.iml" filepath="$PROJECT_DIR$/interviews/interviews.iml" />
