@@ -1,6 +1,5 @@
 package cn.mulitthread;
 
-import org.omg.CORBA.PolicyTypeHelper;
 
 import java.util.List;
 import java.util.Vector;

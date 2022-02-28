@@ -1,7 +1,5 @@
 package cn.youhua;
 
-import javafx.scene.shape.Circle;
-
 import java.io.*;
 
 public class bufferMain {
