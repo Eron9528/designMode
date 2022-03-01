@@ -3,6 +3,7 @@ package com.example.concurrent.maptest;
 import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.LongAdder;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Mapcountkey {
@@ -35,7 +36,7 @@ public class Mapcountkey {
         return freqs;
     }
 
-    private Map<String, Long> gooduse() throws InterruptedException {
+    private static Map<String, Long> gooduse() throws InterruptedException {
         ConcurrentHashMap<String , LongAdder> freqs = new ConcurrentHashMap<>(ITEM_COUNT);
         ForkJoinPool forkJoinPool = new ForkJoinPool(THREAD_COUNT);
         forkJoinPool.execute(()->IntStream.rangeClosed(0,LOOP_COUNT).forEach(i->{
@@ -45,11 +46,15 @@ public class Mapcountkey {
         }));
         forkJoinPool.shutdown();
         forkJoinPool.awaitTermination(1,TimeUnit.HOURS);
-        // 因为我们的Value
+        // 因为我们的Value 是 LongAdder 而不是 Long ,所以需要做一次转换才能返回
+        return freqs.entrySet().stream()
+                .collect(Collectors.toMap(
+                        e->e.getKey(),
+                        e->e.getValue().longValue()));
 
      }
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println(normaluse());
+        System.out.println("1");
     }
 }
